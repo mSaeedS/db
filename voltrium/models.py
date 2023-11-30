@@ -1,12 +1,12 @@
 from django.db import models
-
+from django_countries.fields import CountryField
 # Create your models here.
-from django.db import models
+
 
 class User(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
+    username = models.CharField(max_length=100, unique=True,null=True)
     password = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=15)
 
@@ -19,7 +19,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock_quantity = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
+    picture = models.ImageField(upload_to='product_pictures/', null=True, blank=True)
+    
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
@@ -40,7 +41,7 @@ class Address(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     zip_code = models.CharField(max_length=20)
-    country = models.CharField(max_length=100)
+    country = CountryField()
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

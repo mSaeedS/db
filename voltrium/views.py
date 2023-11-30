@@ -1,8 +1,10 @@
 # voltrium/views.py
 from django.shortcuts import render, get_object_or_404,redirect
 from django.views import View
+from django.contrib.auth import authenticate, login
 from .forms import UserRegistrationForm,AddressForm
-from .models import User,Address
+from .models import User,Address,Product,Category
+from django.contrib import messages
 
 def register_user(request):
     if request.method == 'POST':
@@ -16,7 +18,10 @@ def register_user(request):
             address.save()  # Save the address data
 
             # Additional logic can be added here, such as sending a welcome email.
-            return redirect('registration_success')
+            return redirect('home')
+        else:
+            print(f"User Form Errors: {user_form.errors}")
+            print(f"Address Form Errors: {address_form.errors}")
     else:
         user_form = UserRegistrationForm()
         address_form = AddressForm()
@@ -25,6 +30,22 @@ def register_user(request):
 
 def registration_success(request):
     return render(request, 'registration/registration_success.html')
+
+
+
+def all_products(request):
+    products = Product.objects.all()
+    return render(request, 'product/all_products.html', {'products': products})
+
+def products_by_category(request, category_id):
+    category = Category.objects.get(pk=category_id)
+    products = Product.objects.filter(category=category)
+    return render(request, 'product/products_by_category.html', {'products': products, 'category': category})
+
+def home(request):
+    return render(request, 'home.html')
+
+
 
 
 

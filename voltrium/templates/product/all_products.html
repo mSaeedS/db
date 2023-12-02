@@ -69,10 +69,36 @@
                     {% if product.picture %}
                         <img src="{{ product.picture.url }}" alt="{{ product.name }}">
                     {% endif %}
-                    <button class="buy-button">Buy</button>
+                    {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'add_to_cart' product.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="buy-button">Add to cart</button>
+                        </form>
+                        
+                    {% else %}
+                        <p>Please <a href="{% url 'login' %}">log in</a> to make a purchase.</p>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
+    </div>
+    {% if user.is_authenticated %}
+    <div>
+        <a href="{% url 'view_cart' %}">
+            <button type="button" class="btn btn-dark">Cart</button>
+        </a>
+    </div>
+    {% endif %}
+    <div>
+        <a href="{% url 'products_by_category' category_id=1 %}">
+            <button type="button" class="filter-button">Robot Components</button>
+        </a>
+        <a href="{% url 'products_by_category' category_id=2 %}">
+            <button type="button" class="filter-button">Electrical Components</button>
+        </a>
+        <a href="{% url 'home'  %}">
+            <button type="button" class="filter-button">home</button>
+        </a>
     </div>
 </body>
 </html>

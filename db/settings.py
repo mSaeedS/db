@@ -53,11 +53,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'db.urls'
-
+import os
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,9 +127,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # settings.py
-
+AUTH_USER_MODEL = 'voltrium.User'
+LOGOUT_REDIRECT_URL = '/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = 'C:\\Users\\Saeed Saleem\\Desktop\\VS\\Python\\django\\db\\db\\media\\'
-
+MEDIA_ROOT = 'C:\\Users\\shahi\\source\\repos\\db1\\db\\media'
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    
+]
 
 

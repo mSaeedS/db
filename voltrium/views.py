@@ -2,9 +2,14 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.views import View
 from django.contrib.auth import authenticate, login
-from .forms import UserRegistrationForm,AddressForm
+from django.contrib.auth.views import LoginView
+from .forms import UserRegistrationForm,AddressForm,CustomAuthenticationForm
 from .models import User,Address,Product,Category
 from django.contrib import messages
+from django.contrib.auth.hashers import make_password
+
+def register_user(request):
+    from django.contrib.auth.hashers import make_password
 
 def register_user(request):
     if request.method == 'POST':
@@ -12,7 +17,12 @@ def register_user(request):
         address_form = AddressForm(request.POST)
 
         if user_form.is_valid() and address_form.is_valid():
-            user = user_form.save()  # Save the user data
+            user = user_form.save(commit=False)
+            
+            # Hash the password before saving the user
+            user.password = make_password(user_form.cleaned_data['password'])
+
+            user.save()  # Save the user data
             address = address_form.save(commit=False)
             address.user = user  # Associate the address with the user
             address.save()  # Save the address data
@@ -28,9 +38,6 @@ def register_user(request):
 
     return render(request, 'registration/register_user.html', {'user_form': user_form, 'address_form': address_form})
 
-def registration_success(request):
-    return render(request, 'registration/registration_success.html')
-
 
 
 def all_products(request):
@@ -45,7 +52,28 @@ def products_by_category(request, category_id):
 def home(request):
     return render(request, 'home.html')
 
+def CustomLoginView(request):
+    if request.method == 'POST':
+        form = CustomAuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            
+            user = authenticate(request,username=username, password=password)
+            
+            if user is not None:
+                login(request, user)
+                return redirect('/')
+            else:
+                print("Authentication failed: User does not exist or incorrect password.")
 
+    else:
+        form = CustomAuthenticationForm(request)
+
+    return render(request, 'registration/login.html', {'form': form})
+
+
+    
 
 
 

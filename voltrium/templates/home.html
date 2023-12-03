@@ -10,10 +10,34 @@
 <body>
     <h1>Welcome to Our E-commerce Website!</h1>
 
-    <div>
-        <a href="{% url 'register_user' %}">
-            <button type="button" class="btn btn-dark">Register</button>
-        </a>
-    </div>
+    {% if user.is_authenticated %}
+        <div>
+            <a href="{% url 'all_products' %}">
+                <button type="button" class="btn btn-dark">Products</button>
+            </a>
+            <a href="{% url 'logout' %}">
+                <button type="button" class="btn btn-danger">Logout</button>
+            </a>
+            <a href="{% url 'profile' %}">
+                <button type="button" class="btn btn-danger">Profile</button>
+            </a>
+        </div>
+    {% else %}
+        <div>
+            <a href="{% url 'register_user' %}">
+                <button type="button" class="btn btn-dark">Register</button>
+            </a>
+        </div>
+        <div>
+            <a href="{% url 'login' %}">
+                <button type="button" class="btn btn-dark">Login</button>
+            </a>
+        </div>
+        <div>
+            <a href="{% url 'all_products' %}">
+                <button type="button" class="btn btn-dark">Products</button>
+            </a>
+        </div>
+    {% endif %}
 </body>
 </html>

@@ -1,101 +1,258 @@
 <!-- myapp/templates/registration/register_user.html -->
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" dir="ltr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #c5c3c3;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: left;
-            justify-content: left;
-            min-height: 100vh; /* Set min-height instead of height */
-        }
+  <meta charset="UTF-8">
+  <title> Registeration |Voltrium </title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            box-sizing: border-box;
-        }
+    * {
+      margin: 0;
+      padding: 10;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
+    body {
+      height: 140vh;
+      width: 170vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      background: linear-gradient(135deg, #393E46, #D65A31);
+    }
 
-        h2 {
-            text-align: left;
-            color: #333;
-        }
+    .container {
+      max-width: 700px;
+      width: 200%;
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
 
-        fieldset {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-        }
+    .container .title {
+      font-size: 25px;
+      font-weight: 500;
+      position: relative;
+    }
 
-        legend {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #333;
-        }
+    .container .title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 30px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #393E46, #D65A31);
+    }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-        }
+    .content form .user-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 20px 0 12px 0;
+    }
 
-        input[type="text"],
-        input[type="password"],
-        input[type="email"],
-        textarea {
-            width: 70%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+    form .user-details .input-box {
+      margin-bottom: 15px;
+      width: calc(100% / 2 - 20px);
+    }
 
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
+    form .input-box span.details {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
 
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    .user-details .input-box input {
+      height: 45px;
+      width: 100%;
+      outline: none;
+      font-size: 16px;
+      border-radius: 5px;
+      padding-left: 15px;
+      border: 1px solid #ccc;
+      border-bottom-width: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .user-details .input-box input:focus,
+    .user-details .input-box input:valid {
+      border-color: black;
+    }
+
+    form .gender-details .gender-title {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    form .category {
+      display: flex;
+      width: 80%;
+      margin: 14px 0;
+      justify-content: space-between;
+    }
+
+    form .category label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    form .category label .dot {
+      height: 18px;
+      width: 18px;
+      border-radius: 50%;
+      margin-right: 10px;
+      background: #d9d9d9;
+      border: 5px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    #dot-1:checked~.category label .one,
+    #dot-2:checked~.category label .two,
+    #dot-3:checked~.category label .three {
+      background: #59b6b6;
+      border-color: #866565;
+    }
+
+    form input[type="radio"] {
+      display: none;
+    }
+
+    form .button {
+      height: 45px;
+      margin: 35px 0
+    }
+
+    form .button input {
+      height: 100%;
+      width: 100%;
+      border-radius: 5px;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #D65A31, #393E46);
+    }
+
+    form .button input:hover {
+      /* transform: scale(0.99); */
+      background: linear-gradient(-135deg, #D65A31, #393E46);
+    }
+
+    @media(max-width: 584px) {
+      .container {
+        max-width: 100%;
+      }
+
+      form .user-details .input-box {
+        margin-bottom: 15px;
+        width: 100%;
+      }
+
+      form .category {
+        width: 100%;
+      }
+
+      .content form .user-details {
+        max-height: 300px;
+        overflow-y: scroll;
+      }
+
+      .user-details::-webkit-scrollbar {
+        width: 5px;
+      }
+    }
+
+    @media(max-width: 459px) {
+      .container .content .category {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
     <form method="post" action="{% url 'register_user' %}">
         {% csrf_token %}
-        <h2>User Registration</h2>
-
+    
         <!-- User Form Section -->
-        <fieldset>
-            <legend>User Information</legend>
-            {{ user_form.as_p }}
-        </fieldset>
-
+        <div class="container">
+            <div class="title">User Details</div>
+            <div class="content">
+                <fieldset>
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details">First Name</span>
+                            {{ user_form.first_name }}
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Last Name</span>
+                            {{ user_form.last_name }}
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Username</span>
+                            {{ user_form.username }}
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Phone number</span>
+                            {{ user_form.phone_number }}
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Password</span>
+                            {{ user_form.password }}
+                        </div>
+                
+                    </div>
+                </fieldset>
+            </div>
+        </div>
         <!-- Address Form Section -->
-        <fieldset>
-            <legend>Address Information</legend>
-            {{ address_form.as_p }}
-        </fieldset>
-
-        <button type="submit">Register</button>
+        <div class="container">
+            <div class="title">Address Details</div>
+            <div class="content">
+                <fieldset>
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details">Street</span>
+                            {{ address_form.street }}
+                        </div>
+                        <div class="input-box">
+                            <span class="details">City</span>
+                            {{ address_form.city }}
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Country</span>
+                            {{ address_form.country}}
+                        </div>
+                        <div class="input-box">
+                            <span class="details">State</span>
+                            {{ address_form.state }}
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Zip Code</span>
+                            {{ address_form.zip_code }}
+                        </div>
+                       
+                    </div>
+                </fieldset>
+                <div class="button">
+                    <input type="submit" value="Register">
+                </div>
+            </div>
+        </div>
+        
     </form>
 </body>
 </html>

@@ -43,16 +43,19 @@
             color: #EEEEEE; /* Navbar brand text color */
         }
 
-        .navbar-dark .navbar-brand:hover {
-            color: #EEEEEE; /* Navbar brand text color on hover */
-        }
+            .navbar-dark .navbar-brand:hover {
+                color: #EEEEEE; /* Navbar brand text color on hover */
+            }
+
         .navbar-brand {
             font-size: 36px; /* Adjust the size as needed */
             /* Add any other styling as needed */
         }
+
         .navbar-dark .navbar-nav .nav-item.active .nav-link {
             color: #EEEEEE; /* Active navbar link text color */
         }
+
         .image-section {
             display: flex;
             align-items: center;
@@ -62,12 +65,53 @@
     </style>
 </head>
 <body>
-    <h1>Welcome to Our E-commerce Website!</h1>
-
-    <div>
-        <a href="{% url 'register_user' %}">
-            <button type="button" class="btn btn-dark">Register</button>
-        </a>
+  
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Your Logo" height="60">
+                Voltrium
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'all_products' %}">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'all_products' %}">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register_user' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Image Section -->
+    <div class="image-section text-center">
+        
     </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
 </body>
 </html>

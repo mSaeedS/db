@@ -8,112 +8,169 @@
     <title>{{ product.name }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #222831;
-            color: #EEEEEE;
-            margin: 0;
-            padding: 20px;
+        @font-face {
+            font-family: 'OceanicDrift';
+            src: url('{% static 'voltrium/fonts/oceanicdrift.ttf' %}') format('truetype');
+            /* Add additional font formats if necessary */
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+        @font-face {
+            font-family: 'Nasalization';
+            src: url('{% static 'path/to/nasalization.ttf' %}') format('truetype');
+            /* Add additional font formats if necessary */
+        }
+
+        body {
+            font-family: 'OceanicDrift', sans-serif;
+            background: linear-gradient(135deg, #5C5470 20%, #393E46 20%, #393E46 80%, #5C5470 20%);
+            color: #EEEEEE;
+            margin: 0;
+            padding: 0;
+            font-size: 28px;
+        }
+
+        .navbar {
+            background-color: #393E46; /* Navbar background color */
+            font-size: 28px;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: #EEEEEE; /* Navbar link text color */
+        }
+
+        .navbar-dark .navbar-toggler-icon {
+            background-color: #EEEEEE; /* Navbar toggler color */
+        }
+
+        .navbar-dark .navbar-toggler {
+            border-color: #EEEEEE; /* Navbar toggler border color */
+        }
+
+        .navbar-dark .navbar-brand {
+            color: #EEEEEE; /* Navbar brand text color */
+        }
+
+            .navbar-dark .navbar-brand:hover {
+                color: #EEEEEE; /* Navbar brand text color on hover */
+            }
+
+        .navbar-dark .navbar-nav .nav-item.active .nav-link {
+            color: #EEEEEE; /* Active navbar link text color */
         }
 
         .product-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
+            font-size: 28px;
         }
 
         .product-card {
-            border: 1px solid #393E46;
-            background-color: #393E46;
-            color: #EEEEEE;
-            padding: 20px;
-            margin: 20px;
-            width: 400px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-            text-align: center;
+            /* Existing styles remain unchanged */
+            margin: 15px;
+            flex: 0 0 calc(30% - 30px); /* Adjust the width as needed */
         }
 
-        .product-card:hover {
-            border-color: #D65A31;
-            transform: scale(1.05);
-        }
+            .product-card:hover {
+                border-color: #D65A31; /* Product card border color on hover */
+                
+            }
 
-        .product-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            cursor: pointer;
-        }
+            .product-card img {
+                font-size: 28px;
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+                margin-bottom: 15px;
+                cursor: pointer; /* Add pointer cursor to indicate clickable */
+            }
 
-        .product-card a {
-            text-decoration: none;
-            color: #EEEEEE;
-        }
+            .product-card a {
+                font-size: 28px;
+                text-decoration: none; /* Remove the underline */
+                color: #EEEEEE; /* Inherit the color from the parent element (h3, p, etc.) */
+            }
 
-        .product-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #D65A31;
-        }
+            .product-card h3 {
+                font-size: 2.5rem;
+                font-size: 28px;
+                margin-bottom: 10px;
+                color: #D65A31; /* Product name color */
+            }
 
-        .product-card p {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
+            .product-card p {
+                font-size: 2rem;
+                margin-bottom: 8px;
+            }
 
-        .product-card .price {
-            color: #D65A31;
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
+            .product-card .price {
+                font-family: 'Nasalization', sans-serif; /* Use the Nasalization font for prices */
+                color: #EEEEEE; /* Price color */
+                font-weight: bold;
+            }
 
-        .product-card .in-stock,
-        .product-card .out-of-stock {
-            color: #D65A31;
-            font-size: 1.2rem;
-        }
+            .product-card .in-stock,
+            .product-card .out-of-stock {
+                color: #D65A31; /* Stock text color */
+            }
 
-        .product-card button.btn-dark {
-            background-color: #D65A31;
-            color: #EEEEEE;
-            border: none;
-            padding: 15px;
-            font-size: 1.2rem;
-        }
-
-        .review-container {
-            margin-top: 20px;
-        }
-
-        .review-container h3 {
-            color: #D65A31;
-        }
-        .btn-dark {
-            background-color: #D65A31;
-            color: #EEEEEE;
-            border: none;
-        }
-
+            .product-card button.btn-dark {
+                background-color: #D65A31; /* Dark color for the button */
+                color: #EEEEEE; /* Text color for the button */
+                border: none;
+                padding-bottom: 10px; /* Add padding to the bottom of the button */
+            }
     </style>
 </head>
 <body>
-    <div>
-        <a href="{% url 'home' %}">
-            <button type="button" class="btn btn-dark">Home</button>
-        </a>
-    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Your Logo" height="60">
+                Voltrium
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'all_products' %}">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'view_cart' %}">
+                            <img src="{% static 'images/cart.png' %}" alt="Cart" width="40" height="40">
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'all_products' %}">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register_user' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="product-container">
             <div class="product-card">
                 {% if product.picture %}
-                    <img src="{{ product.picture.url }}" alt="{{ product.name }}">
+                <img src="{{ product.picture.url }}" alt="{{ product.name }}">
                 {% endif %}
                 <h3>{{ product.name }}</h3>
                 <p>{{ product.description }}</p>
@@ -123,12 +180,12 @@
                     {% if product.stock_quantity > 0 %} In stock {% else %} Out of stock {% endif %}
                 </p>
                 {% if user.is_authenticated %}
-                    <form method="post" action="{% url 'add_to_cart' product.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-dark">Add to cart</button>
-                    </form>
+                <form method="post" action="{% url 'add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-dark">Add to cart</button>
+                </form>
                 {% else %}
-                    <p>Please <a href="{% url 'login' %}">log in</a> to make a purchase.</p>
+                <p>Please <a href="{% url 'login' %}">log in</a> to make a purchase.</p>
                 {% endif %}
             </div>
         </div>
@@ -137,27 +194,27 @@
     <div class="review-container">
         <h3>Product Reviews</h3>
         {% if reviews %}
-            <ul>
-                {% for review in reviews %}
-                    <li class="review-card">
-                        <strong>{{ review.user.username }}</strong> <br>
-                        Rating: {{ review.rating }}<br>
-                        Comment: {{ review.comment }}<br>
-                    </li>
-                {% endfor %}
-            </ul>
+        <ul>
+            {% for review in reviews %}
+            <li class="review-card">
+                <strong>{{ review.user.username }}</strong> <br>
+                Rating: {{ review.rating }}<br>
+                Comment: {{ review.comment }}<br>
+            </li>
+            {% endfor %}
+        </ul>
         {% else %}
-            <p>No reviews yet. Be the first to leave a review!</p>
+        <p>No reviews yet. Be the first to leave a review!</p>
         {% endif %}
         {% if has_ordered %}
-            <h3>Submit a Review</h3>
-            <form method="post" action="{% url 'product_detail' product_id=product.id %}">
-                {% csrf_token %}
-                {{ review_form.as_p }}
-                <button type="submit" class="btn btn-dark">Submit Review</button>
-            </form>
+        <h3>Submit a Review</h3>
+        <form method="post" action="{% url 'product_detail' product_id=product.id %}">
+            {% csrf_token %}
+            {{ review_form.as_p }}
+            <button type="submit" class="btn btn-dark">Submit Review</button>
+        </form>
         {% else %}
-            <p>You must order this product to submit a review.</p>
+        <p>You must order this product to submit a review.</p>
         {% endif %}
     </div>
 

@@ -1,4 +1,4 @@
-<!-- templates/home.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +6,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        @font-face {
+            font-family: 'OceanicDrift';
+            src: url('/static/voltrium/fonts/oceanicdrift.ttf') format('truetype');
+            /* Add additional font formats if necessary */
+        }
+
+
+        body {
+            font-family: 'OceanicDrift', sans-serif;
+            background: linear-gradient(135deg, #D65A31 20%, #393E46 20%, #393E46 80%,#D65A31 20%);
+            color: #EEEEEE;
+        }
+
+
+
+        .navbar {
+            background-color: #393E46;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            font-size: 28px;
+            color: #EEEEEE; /* Navbar link text color */
+        }
+
+        .navbar-dark .navbar-toggler-icon {
+            background-color: #EEEEEE; /* Navbar toggler color */
+        }
+
+        .navbar-dark .navbar-toggler {
+            border-color: #EEEEEE; /* Navbar toggler border color */
+        }
+
+        .navbar-dark .navbar-brand {
+            color: #EEEEEE; /* Navbar brand text color */
+        }
+
+        .navbar-dark .navbar-brand:hover {
+            color: #EEEEEE; /* Navbar brand text color on hover */
+        }
+        .navbar-brand {
+            font-size: 36px; /* Adjust the size as needed */
+            /* Add any other styling as needed */
+        }
+        .navbar-dark .navbar-nav .nav-item.active .nav-link {
+            color: #EEEEEE; /* Active navbar link text color */
+        }
+        .image-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Ensure the div takes at least the full height of the viewport */
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Our E-commerce Website!</h1>
-
-    <div>
-        <a href="{% url 'register_user' %}">
-            <button type="button" class="btn btn-dark">Register</button>
-        </a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Your Logo" height="60">
+                Voltrium
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'all_products' %}">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'all_products' %}">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register_user' %}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+     <!-- Image Section -->
+    <div class="image-section text-center">
+        <img src="{% static 'images/hero3.png' %}" alt="Your Image" class="img-fluid" >
+        <!-- Add any additional content or styling for the image section here -->
     </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

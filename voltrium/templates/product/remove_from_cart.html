@@ -1,0 +1,25 @@
+<!-- templates/product/remove_from_cart.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #222831;
+            color: #EEEEEE;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #D65A31;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Item Removed</h2>
+        <p>The item has been successfully removed from your cart.</p>
+        <a href="{% url 'view_cart' %}" style="color: #D65A31;">Back to Cart</a>
+    </div>
+</body>
+</html>

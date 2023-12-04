@@ -1,78 +1,183 @@
-<!-- templates/product/all_products.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Products</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 20px;
+            background-color: #222831; /* Background color */
+            color: #EEEEEE; /* Text color */
         }
 
-        h2 {
-            color: #007bff;
+        .navbar {
+            background-color: #393E46; /* Navbar background color */
         }
 
-        .product-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
+        .navbar-dark .navbar-nav .nav-link {
+            color: #EEEEEE; /* Navbar link text color */
+        }
+
+        .navbar-dark .navbar-toggler-icon {
+            background-color: #EEEEEE; /* Navbar toggler color */
+        }
+
+        .navbar-dark .navbar-toggler {
+            border-color: #EEEEEE; /* Navbar toggler border color */
+        }
+
+        .navbar-dark .navbar-brand {
+            color: #EEEEEE; /* Navbar brand text color */
+        }
+
+        .navbar-dark .navbar-brand:hover {
+            color: #EEEEEE; /* Navbar brand text color on hover */
+        }
+
+        .navbar-dark .navbar-nav .nav-item.active .nav-link {
+            color: #EEEEEE; /* Active navbar link text color */
         }
 
         .product-card {
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            margin: 10px;
+            border: 1px solid #393E46; /* Product card border color */
+            background-color: #393E46; /* Product card background color */
+            color: #EEEEEE; /* Product card text color */
             padding: 15px;
-            max-width: 300px;
+            margin: 15px;
+            width: 300px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
+            transition: transform 0.3s ease-in-out;
+            text-align: center; /* Center-align the content */
+        }
+
+        .product-card:hover {
+            border-color: #D65A31; /* Product card border color on hover */
+            transform: scale(1.05);
         }
 
         .product-card img {
             max-width: 100%;
             height: auto;
-            border-radius: 4px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer; /* Add pointer cursor to indicate clickable */
         }
 
-        .buy-button {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 15px;
+        .product-card a {
+            text-decoration: none; /* Remove the underline */
+            color: #EEEEEE; /* Inherit the color from the parent element (h3, p, etc.) */
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #D65A31; /* Product name color */
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .product-card .price {
+            color: #EEEEEE; /* Price color */
+            font-weight: bold;
+        }
+
+        .product-card .in-stock,
+        .product-card .out-of-stock {
+            color: #D65A31; /* Stock text color */
+        }
+
+        .product-card button.btn-dark {
+            background-color: #D65A31; /* Dark color for the button */
+            color: #EEEEEE; /* Text color for the button */
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .buy-button:hover {
-            background-color: #0056b3;
+            padding-bottom: 10px; /* Add padding to the bottom of the button */
         }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Your Logo" height="60">
+                Voltrium
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'products_by_category' category_id=1 %}">Robot Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'products_by_category' category_id=2 %}">Electrical Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'view_cart' %}">
+                                <img src="{% static 'images/cart.png' %}" alt="Cart" width="40" height="40">
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'products_by_category' category_id=1 %}">Robot Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'products_by_category' category_id=2 %}">Electrical Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register_user' %}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-        <h2>All Products</h2>
         <div class="product-container">
             {% for product in products %}
                 <div class="product-card">
-                    <h3>{{ product.name }}</h3>
-                    <p>{{ product.description }}</p>
-                    <p>Price: ${{ product.price }}</p>
-                    <p>Stock: {% if product.stock_quantity > 0 %} In stock {% else %} Out of stock {% endif %}</p>
-                    <p>Category: {{ product.category.category_name }}</p>
-                    {% if product.picture %}
-                        <img src="{{ product.picture.url }}" alt="{{ product.name }}">
+                    <a href="{% url 'product_detail' product_id=product.id %}">
+                        {% if product.picture %}
+                            <img src="{{ product.picture.url }}" alt="{{ product.name }}">
+                        {% endif %}
+                        <h3>{{ product.name }}</h3>
+                        <p class="price">Price: ${{ product.price }}</p>
+                        <p class="{% if product.stock_quantity > 0 %}in-stock{% else %}out-of-stock{% endif %}">
+                            {% if product.stock_quantity > 0 %} In stock {% else %} Out of stock {% endif %}
+                        </p>
+                    </a>
+                    {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'add_to_cart' product.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-dark">Add to cart</button>
+                        </form>
+                    {% else %}
+                        <p>Please <a href="{% url 'login' %}">log in</a> to make a purchase.</p>
                     {% endif %}
-                    <button class="buy-button">Buy</button>
                 </div>
             {% endfor %}
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

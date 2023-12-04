@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 {% load static %}
+=======
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Home Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
@@ -154,14 +158,44 @@
                             <a href="{% url 'password_change' %}" class="btn btn-dark">Change Password</a>
     
                         </div>
+=======
+    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="mb-4 text-center">User Profile</h2>
+                        <!-- Display Address Form -->
+                        <form method="post" action="{% url 'profile' %}">
+                            {% csrf_token %}
+                            {{ address_form.as_p }}
+                            <button type="submit" name="address_submit" class="btn btn-dark w-100 mt-3">Update Address</button>
+                        </form>
+
+                        <hr class="my-4">
+                        <!-- Display Password Change Form -->
+                        <a href="{% url 'password_change' %}">
+                            <button type="button" class="btn btn-danger">Password</button>
+                        </a>
+                        <a href="{% url 'home' %}">
+                            <button type="button" class="btn btn-dark">Home</button>
+                        </a>
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+=======
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
 </body>
 </html>

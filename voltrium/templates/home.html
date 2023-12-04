@@ -62,6 +62,7 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -109,5 +110,38 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+=======
+    <h1>Welcome to Our E-commerce Website!</h1>
+
+    {% if user.is_authenticated %}
+        <div>
+            <a href="{% url 'all_products' %}">
+                <button type="button" class="btn btn-dark">Products</button>
+            </a>
+            <a href="{% url 'logout' %}">
+                <button type="button" class="btn btn-danger">Logout</button>
+            </a>
+            <a href="{% url 'profile' %}">
+                <button type="button" class="btn btn-danger">Profile</button>
+            </a>
+        </div>
+    {% else %}
+        <div>
+            <a href="{% url 'register_user' %}">
+                <button type="button" class="btn btn-dark">Register</button>
+            </a>
+        </div>
+        <div>
+            <a href="{% url 'login' %}">
+                <button type="button" class="btn btn-dark">Login</button>
+            </a>
+        </div>
+        <div>
+            <a href="{% url 'all_products' %}">
+                <button type="button" class="btn btn-dark">Products</button>
+            </a>
+        </div>
+    {% endif %}
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
 </body>
 </html>

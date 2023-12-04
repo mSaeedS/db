@@ -275,7 +275,10 @@ def product_detail(request, product_id):
 def profile(request):
     user = request.user
 
+<<<<<<< HEAD
     # Fetch user's addresses
+=======
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
     addresses = Address.objects.filter(user=user)
     if addresses:
         address_instance = addresses.first()
@@ -284,6 +287,7 @@ def profile(request):
 
     address_form = AddressForm(request.POST or None, instance=address_instance)
 
+<<<<<<< HEAD
     # Fetch user's order lines and orders
     order_lines = OrderLine.objects.filter(order__user=user)
     orders = Order.objects.filter(user=user)
@@ -295,6 +299,8 @@ def profile(request):
         'orders': orders
     }
 
+=======
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
     if request.method == 'POST':
         if 'address_submit' in request.POST:
             if address_form.is_valid():
@@ -302,6 +308,13 @@ def profile(request):
                 messages.success(request, 'Your address was successfully updated.')
                 return redirect('home')
 
+<<<<<<< HEAD
+=======
+    context = {
+        'address_form': address_form,
+        'addresses': addresses
+    }
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
     return render(request, 'profile.html', context)
 
 def password_change(request):

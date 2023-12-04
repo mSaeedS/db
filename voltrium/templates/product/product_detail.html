@@ -1,24 +1,40 @@
 <!-- templates/product/product_detail.html -->
+<<<<<<< HEAD
 {% load static %}
+=======
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ product.name }}</title>
+<<<<<<< HEAD
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         body {
             font-family: 'Arial', sans-serif;
             background-color: #222831;
             color: #EEEEEE;
+=======
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
             margin: 0;
             padding: 20px;
         }
 
+<<<<<<< HEAD
         .container {
             max-width: 800px;
             margin: 0 auto;
+=======
+        h2 {
+            color: #007bff;
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
         }
 
         .product-container {
@@ -28,6 +44,7 @@
         }
 
         .product-card {
+<<<<<<< HEAD
             border: 1px solid #393E46;
             background-color: #393E46;
             color: #EEEEEE;
@@ -42,11 +59,21 @@
         .product-card:hover {
             border-color: #D65A31;
             transform: scale(1.05);
+=======
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 15px;
+            max-width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
         }
 
         .product-card img {
             max-width: 100%;
             height: auto;
+<<<<<<< HEAD
             border-radius: 8px;
             margin-bottom: 15px;
             cursor: pointer;
@@ -86,12 +113,30 @@
             border: none;
             padding: 15px;
             font-size: 1.2rem;
+=======
+            border-radius: 4px;
+        }
+
+        .buy-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .buy-button:hover {
+            background-color: #0056b3;
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
         }
 
         .review-container {
             margin-top: 20px;
         }
 
+<<<<<<< HEAD
         .review-container h3 {
             color: #D65A31;
         }
@@ -149,20 +194,85 @@
         {% else %}
             <p>No reviews yet. Be the first to leave a review!</p>
         {% endif %}
+=======
+        .review-card {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .filter-button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .filter-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+        <p>Price: ${{ product.price }}</p>
+
+        {% if product.picture %}
+            <img src="{{ product.picture.url }}" alt="{{ product.name }}">
+        {% endif %}
+
+        <h3>Product Reviews</h3>
+        <div class="review-container">
+            {% if reviews %}
+                <ul>
+                    {% for review in reviews %}
+                        <li class="review-card">
+                            <strong>{{ review.user.username }}:</strong>
+                            Rating: {{ review.rating }}<br>
+                            {{ review.comment }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No reviews yet. Be the first to leave a review!</p>
+            {% endif %}
+        </div>
+
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
         {% if has_ordered %}
             <h3>Submit a Review</h3>
             <form method="post" action="{% url 'product_detail' product_id=product.id %}">
                 {% csrf_token %}
                 {{ review_form.as_p }}
+<<<<<<< HEAD
                 <button type="submit" class="btn btn-dark">Submit Review</button>
+=======
+                <button type="submit" class="buy-button">Submit Review</button>
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
             </form>
         {% else %}
             <p>You must order this product to submit a review.</p>
         {% endif %}
     </div>
 
+<<<<<<< HEAD
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+=======
+    <div>
+        <a href="{% url 'home'  %}">
+            <button type="button" class="filter-button">Home</button>
+        </a>
+    </div>
+>>>>>>> 2c27153335ef95b759d64264d0a04c541b666d87
 </body>
 </html>

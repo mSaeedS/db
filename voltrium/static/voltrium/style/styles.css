@@ -64,7 +64,25 @@ body {
     border-color: #D65A31; /* Product card border color on hover */
     transform: scale(1.05);
 }
+.text-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px; /* Adjust the font size as needed */
+    text-align: center; /* Center-align the text */
+    color: #FFFFFF; /* Text color */
+    background-color: rgba(0, 0, 0, 0.5); /* Background color with transparency */
+    padding: 50px;
+    border-radius: 10px;
+}
 
+.made-by-text {
+    color: #FFFFFF; /* Text color */
+    background-color: rgba(0, 0, 0, 0.5); /* Background color with transparency */
+    padding: 50px;
+    border-radius: 10px;
+}
 .product-card img {
     max-width: 100%;
     height: auto;

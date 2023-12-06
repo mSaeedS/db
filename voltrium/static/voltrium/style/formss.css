@@ -15,6 +15,14 @@ input[type="text"], input[type="password"], input[type="email"], select, .specif
     color: #F87C53; /* Replace with text color, if needed */
     border: 2px solid #F87C53; /* Optional: set border color if needed */
 }
+#bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    z-index: -1; /* Set a lower z-index to ensure it's behind other content */
+}
 
 body {
     font-family: 'OceanicDrift', sans-serif;

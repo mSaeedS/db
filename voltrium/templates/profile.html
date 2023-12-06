@@ -60,28 +60,46 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'all_products' %}">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'all_products' %}">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
                     {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'all_products' %}">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'register_user' %}">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Login</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'all_products' %}">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register_user' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
                     {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
-
+    <div id="bg"></div> <!-- Create an empty div with the ID "bg" for the Vanta.js animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script>
+        VANTA.NET({
+            el: "#bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 1000.00,
+            minWidth: 1000.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xe06400,
+            backgroundColor: 0x222222,
+            spacing: 20.00,
+            showDots: false
+        })
+    </script>
     <div class="container my-5" s>
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -127,7 +145,7 @@
                                 Product: {{ order_line.product.name }}<br>
                                 Quantity: {{ order_line.quantity }}<br>
                                 Unit Price: {{ order_line.unit_price }}<br>
-                                Review Submitted: {{ order_line.review_submitted }}
+
                             </li>
                             {% endfor %}
                         </ul>

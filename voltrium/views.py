@@ -46,17 +46,27 @@ def register_user(request):
 
 def all_products(request):
     products = Product.objects.all()
-    return render(request, 'product/all_products.html', {'products': products})
+    categories = Category.objects.all()
+    max_price = request.GET.get('max_price') 
+    selected_category_id = request.GET.get('category')
+    if selected_category_id:
+        products = products.filter(category_id=selected_category_id,)
+       
+    if max_price:
+        products = products.filter(price__lte=max_price)  
+    return render(request, 'product/all_products.html', {'products': products,'categories': categories,'selected_category_id': selected_category_id})
+
+from django.shortcuts import get_object_or_404
 
 def products_by_category(request, category_id=None):
+    categories = Category.objects.all()
+
     if category_id:
-        category = Category.objects.get(pk=category_id)
+        category = get_object_or_404(Category, pk=category_id)
         products = Product.objects.filter(category=category)
     else:
         products = Product.objects.all()
 
-    categories = Category.objects.all()
-    
     return render(request, 'product/products_by_category.html', {'products': products, 'categories': categories})
 
 def home(request):

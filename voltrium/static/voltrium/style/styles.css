@@ -1,0 +1,165 @@
+﻿@font-face {
+    font-family: 'OceanicDrift';
+    src: url('/static/voltrium/fonts/oceanicdrift.ttf') format('truetype');
+    /* Add additional font formats if necessary */
+}
+
+@font-face {
+    font-family: 'Nasalization';
+    src: url('{% static 'path/to/nasalization.ttf' %}') format('truetype');
+    /* Add additional font formats if necessary */
+}
+
+body {
+    font-family: 'OceanicDrift', sans-serif;
+    background: linear-gradient(45deg, #5C5470 20%, #393E46 20%, #393E46 80%,#5C5470 20%);
+    color: #EEEEEE;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #393E46; /* Navbar background color */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    font-size: 28px;
+    color: #EEEEEE; /* Navbar link text color */
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-color: #EEEEEE; /* Navbar toggler color */
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: #EEEEEE; /* Navbar toggler border color */
+}
+
+.navbar-dark .navbar-brand {
+    color: #EEEEEE; /* Navbar brand text color */
+}
+
+.navbar-dark .navbar-brand:hover {
+    color: #EEEEEE; /* Navbar brand text color on hover */
+}
+
+.navbar-dark .navbar-nav .nav-item.active .nav-link {
+    color: #EEEEEE; /* Active navbar link text color */
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.product-card {
+ /* Existing styles remain unchanged */
+ margin: 15px;
+ flex: 0 0 calc(30% - 30px); /* Adjust the width as needed */
+}
+
+.product-card:hover {
+    border-color: #D65A31; /* Product card border color on hover */
+    transform: scale(1.05);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer; /* Add pointer cursor to indicate clickable */
+}
+
+.product-card a {
+    text-decoration: none; /* Remove the underline */
+    color: #EEEEEE; /* Inherit the color from the parent element (h3, p, etc.) */
+}
+
+.product-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #D65A31; /* Product name color */
+}
+
+.product-card p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.product-card .price {
+    font-family: 'Nasalization', sans-serif; /* Use the Nasalization font for prices */
+    color: #EEEEEE; /* Price color */
+    font-weight: bold;
+}
+
+.product-card .in-stock,
+.product-card .out-of-stock {
+    color: #D65A31; /* Stock text color */
+}
+
+.product-card button.btn-dark {
+    background-color: #D65A31; /* Dark color for the button */
+    color: #EEEEEE; /* Text color for the button */
+    border: none;
+    padding-bottom: 10px; /* Add padding to the bottom of the button */
+}
+
+.navbar .dropdown-menu {
+    font-family: 'Nasalization', sans-serif;
+    font-size: 28px;
+    color: #F87C53;
+    background-color: #393E46; /* Replace with your desired color */
+}
+
+    /* Color and background color for dropdown items on hover */
+.navbar .dropdown-menu .dropdown-item:hover {
+    color: #EEEEEE !important; /* Text color on hover */
+    background-color: #D65A31 !important;
+}
+.image-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensure the div takes at least the full height of the viewport */
+}
+/* Styles for the slider thumb */
+
+
+/* For Internet Explorer */
+.slider {
+    width : 80%;
+    -ms-thumb-color: #5C5470 !important;
+    -ms-track-color: #393E46 !important;
+    margin-bottom: 10px;
+}
+.btn-primary {
+    background-color: #393E46 !important;
+    border-color:#393E46 !important;
+}
+ .col-md-3 {
+    background-color: #b43d16; /* Change the background color as needed */
+    font-size: 25px;
+
+    padding: 20px;
+    border: none; /* Remove the border */
+    border-radius: 5px; /* Optional: to round the corners */
+    margin-bottom: 20px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+    /* Style the button */
+form button {
+    background-color : #5C5470;
+
+    width: 300px; /* Adjust width as needed */
+    align-self: center; /* Center the button */
+}
+.category-button {
+    margin-right: 10px; /* Adjust the margin as needed */
+    margin-bottom: 10px; /* For vertical spacing if buttons wrap to the next line */
+}

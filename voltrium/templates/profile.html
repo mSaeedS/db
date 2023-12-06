@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'voltrium/style/styles.css' %}">
     <style>
         body {
             background-color: #222831;
@@ -85,51 +86,35 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card" style="background-color: #393E46;">
-                    <div class="card-body" >
+                    <div class="card-body">
                         <!-- Display Password Change Form -->
-                        <form method="post" action="{% url 'profile' %}" class="mb-4" >
+                        <form method="post" action="{% url 'profile' %}" class="mb-4">
+                            {% csrf_token %}
                             <h2 class="mb-4 text-center title" style="color: #D65A31;">User Address</h2>
 
+                            {% for field in address_form %}
                             <div class="mb-3">
-                                <label for="{{ address_form.country.id_for_label }}" style="color: #D65A31;"><strong>Country</strong></label>
-                                {{ address_form.country }}
+                                <label for="{{ field.id_for_label }}" style="color: #D65A31;"><strong>{{ field.label }}</strong></label>
+                                {{ field }}
                             </div>
-
-                            <div class="mb-3">
-                                <label for="{{ address_form.city.id_for_label }}" style="color: #D65A31;"><strong>City</strong></label>
-                                {{ address_form.city }}
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="{{ address_form.state.id_for_label }}" style="color: #D65A31;"><strong>State</strong></label>
-                                {{ address_form.state }}
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="{{ address_form.street.id_for_label }}" style="color: #D65A31;"><strong>Street</strong></label>
-                                {{ address_form.street }}
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="{{ address_form.zip_code.id_for_label }}" style="color: #D65A31;"><strong>Zip Code</strong></label>
-                                {{ address_form.zip_code }}
-                            </div>
+                            {% endfor %}
 
                             <!-- Update Address Button -->
                             <div class="input-box button">
-                                <button type="submit" name="address_submit" class="btn btn-dark w-100" >Update Address</button>
+                                <button type="submit" name="address_submit" class="btn btn-dark w-100">Update Address</button>
                             </div>
                         </form>
+
 
                         <!-- Display User's Orders -->
                         <h2 class="mb-3" style="color: #D65A31;">Orders</h2>
                         <ul class="list-group mb-4">
                             {% for order in orders %}
-                                <li class="list-group-item" >
-                                    Order ID: {{ order.id }}<br>
-                                    Order Date: {{ order.order_date }}<br>
-                                    Total Amount: {{ order.total_amount }}
-                                </li>
+                            <li class="list-group-item">
+                                Order ID: {{ order.id }}<br>
+                                Order Date: {{ order.order_date }}<br>
+                                Total Amount: {{ order.total_amount }}
+                            </li>
                             {% endfor %}
                         </ul>
 
@@ -137,22 +122,22 @@
                         <h2 class="mb-3" style="color: #D65A31;">Order History</h2>
                         <ul class="list-group mb-4">
                             {% for order_line in order_lines %}
-                                <li class="list-group-item">
-                                    Order ID: {{ order_line.order.id }}<br>
-                                    Product: {{ order_line.product.name }}<br>
-                                    Quantity: {{ order_line.quantity }}<br>
-                                    Unit Price: {{ order_line.unit_price }}<br>
-                                    Review Submitted: {{ order_line.review_submitted }}
-                                </li>
+                            <li class="list-group-item">
+                                Order ID: {{ order_line.order.id }}<br>
+                                Product: {{ order_line.product.name }}<br>
+                                Quantity: {{ order_line.quantity }}<br>
+                                Unit Price: {{ order_line.unit_price }}<br>
+                                Review Submitted: {{ order_line.review_submitted }}
+                            </li>
                             {% endfor %}
                         </ul>
 
-                        
+
 
                         <!-- Password Change and Home Buttons -->
                         <div class="d-flex justify-content-between">
                             <a href="{% url 'password_change' %}" class="btn btn-dark">Change Password</a>
-    
+
                         </div>
                     </div>
                 </div>

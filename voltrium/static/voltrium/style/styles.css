@@ -55,6 +55,7 @@ body {
 
 .product-card {
  /* Existing styles remain unchanged */
+ color : #EEEEEe;
  margin: 15px;
  flex: 0 0 calc(30% - 30px); /* Adjust the width as needed */
 }
@@ -83,10 +84,11 @@ body {
     color: #D65A31; /* Product name color */
 }
 
-.product-card p {
-    font-size: 1rem;
-    margin-bottom: 8px;
-}
+    .product-card p {
+        font-size: 1rem;
+        color: #EEEEEE;
+        margin-bottom: 8px;
+    }
 
 .product-card .price {
     font-family: 'Nasalization', sans-serif; /* Use the Nasalization font for prices */
@@ -170,4 +172,70 @@ form button {
     width: 100%;
     height: 200%;
     z-index: -1; /* Set a lower z-index to ensure it's behind other content */
+}
+@font-face {
+    font-family: 'OceanicDrift';
+    src: url('/static/voltrium/fonts/oceanicdrift.ttf') format('truetype');
+    /* Add additional font formats if necessary */
+}
+
+@font-face {
+    font-family: 'Nasalization';
+    src: url('{% static 'path/to/nasalization.ttf' %}') format('truetype');
+    /* Add additional font formats if necessary */
+}
+
+body {
+    font-family: 'Nasalization', sans-serif;
+    background: linear-gradient(45deg, #5C5470 20%, #393E46 20%, #393E46 80%,#5C5470 20%);
+    color: #EEEEEE;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: #D65A31;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 15px;
+}
+
+form {
+    display: inline;
+}
+
+label {
+    margin-right: 10px;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+p {
+    color: #007bff;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+.btn-primary,
+.btn-secondary {
+    background-color: #D65A31;
+    color: #EEEEEE;
+    border: none;
 }

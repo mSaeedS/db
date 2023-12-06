@@ -90,7 +90,7 @@
             mouseControls: true,
             touchControls: true,
             gyroControls: false,
-            minHeight: 1000.00,
+            minHeight: 2500.00,
             minWidth: 1000.00,
             scale: 1.00,
             scaleMobile: 1.00,
@@ -108,11 +108,11 @@
                         <!-- Display Password Change Form -->
                         <form method="post" action="{% url 'profile' %}" class="mb-4">
                             {% csrf_token %}
-                            <h2 class="mb-4 text-center title" style="color: #D65A31;">User Address</h2>
+                            <h2 class="mb-4 text-center title" style="color: #D65A31;">Change Address</h2>
 
                             {% for field in address_form %}
                             <div class="mb-3">
-                                <label for="{{ field.id_for_label }}" style="color: #D65A31;"><strong>{{ field.label }}</strong></label>
+                                <label for="{{ field.id_for_label }}" style="color: #D65A31;"><strong>{{ field.label }}&nbsp&nbsp&nbsp</strong></label>
                                 {{ field }}
                             </div>
                             {% endfor %}
